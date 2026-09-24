@@ -1,0 +1,268 @@
+/* ===============================
+   Global layout (full screen)
+================================ */
+.filebrowser-screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  width: 100vw;
+  background: #f3f4f6; /* gris clair typique Windows */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ===============================
+   Header (barre d’action fixe)
+================================ */
+.file-browser-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #ffffff;
+  padding: 10px 16px;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-left button {
+  border: none;
+  background: none;
+  cursor: pointer;
+  padding: 6px;
+  transition: background 0.2s;
+  border-radius: 8px;
+}
+
+.header-left button:hover {
+  background: #e6e6e6;
+}
+
+.header-title {
+  font-weight: 600;
+  color: #333;
+  font-size: 1rem;
+}
+
+/* ===============================
+   Logout button (top-right)
+================================ */
+.logout-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.2s;
+}
+
+.logout-btn:hover {
+  background: #d32f2f;
+}
+
+/* ===============================
+   Contenu principal
+================================ */
+.file-browser-content {
+  flex: 1;
+  overflow: auto;
+  padding: 16px;
+  background: #f3f4f6;
+}
+
+/* ===============================
+   Finder / Windows-like Grid View
+================================ */
+.file-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  gap: 16px;
+  padding-top: 10px;
+}
+
+.file-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #ffffff;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.file-item:hover {
+  background-color: #eaf2ff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.file-item.selected {
+  border: 1px solid #0078d7;
+  background-color: #dbeafe;
+}
+
+.file-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.file-icon img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+/* ===============================
+   Nom du fichier
+================================ */
+.file-name {
+  font-size: 0.85rem;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+/* ===============================
+   Vue liste (Détails)
+================================ */
+.file-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.file-table th, .file-table td {
+  padding: 10px 12px;
+}
+
+.file-table th {
+  background-color: #f0f0f0;
+  cursor: pointer;
+  text-align: left;
+  color: #333;
+  border-bottom: 1px solid #ddd;
+}
+
+.file-table tr:hover {
+  background-color: #eaf2ff;
+}
+
+.selected-row {
+  background-color: #dbeafe;
+}
+
+/* ===============================
+   Transition entre les vues
+================================ */
+.fade-enter {
+  opacity: 0;
+}
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* --- Boutons d'action ergonomiques --- */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f3f4f6;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 6px 10px;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  font-size: 0.85rem;
+}
+
+.action-btn:hover {
+  background: #e6e6e6;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.action-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.action-btn.delete-btn.active {
+  background: #f44336;
+  color: white;
+  border-color: #d32f2f;
+}
+
+.action-btn.delete-btn.active:hover {
+  background: #d32f2f;
+}
+
+.current-path {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.file-row-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* --- Bouton de déconnexion (logout-btn) --- */
+.logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #e8eefb;
+  color: #1e3a8a;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  padding: 8px 14px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  margin-right: 16px; /* Pour l'éloigner du bord droit */
+}
+
+.logout-btn:hover {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logout-btn:active {
+  background: #bfdbfe;
+  transform: scale(0.97);
+}
+
+.logout-btn svg {
+  width: 18px;
+  height: 18px;
+}
